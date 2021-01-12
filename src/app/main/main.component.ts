@@ -48,7 +48,7 @@ export class MainComponent implements OnInit {
   }
 
   initializeComponent(): void {
-    // this.videoSource = "./../assets/videos/".concat(this.scenes[0].responses[0].src); // disable for electron build
+    this.videoSource = "assets/videos/".concat(this.scenes[0].responses[0].src); // disable for electron build
     this.scenes = scenes;
     this.needsToRetry = false;
     this.sceneId = 0;
@@ -92,7 +92,7 @@ export class MainComponent implements OnInit {
       (response) => {
         this.responsesSubscription.unsubscribe();
         this.responseOngoing = true;
-        this.videoSource = "/assets/videos/".concat(response.src); //disable for electron build
+        this.videoSource = "assets/videos/".concat(response.src); //disable for electron build
         console.log(this.videoSource);
         this.api.getMediaById("singleVideo").currentTime = 0;
         this.vidReadySubscription = this.api
