@@ -122,16 +122,16 @@ export class MainComponent implements OnInit, OnDestroy {
     this.vidReadySubscription = this.api
       .getMediaById("singleVideo")
       .subscriptions.canPlay.subscribe(() => {
+        this.vidReadySubscription.unsubscribe();
         this.api.getMediaById("singleVideo").currentTime = 0;
-        console.log("(canPay Subscription) New video source canPlay: ", this.api.getMediaById("singleVideo").canPlayThrough);
+        console.log("(canPay Subscription) New video source canPlay: ", this.api.getMediaById("singleVideo").canPlay);
         this.vidEndSubscription = this.api
           .getMediaById("singleVideo")
           .subscriptions.ended.subscribe(() => {
+            this.vidEndSubscription.unsubscribe();
             this.responseOngoing = false;
             this.hasResponded = true;
             this.currentResponse = this.unEndedCurrentResponse;
-            this.vidEndSubscription.unsubscribe();
-            this.vidReadySubscription.unsubscribe();
             this.lastVideoSource = this.videoSource
           });
         this.api.getMediaById("singleVideo").play();
