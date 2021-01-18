@@ -6,7 +6,7 @@ import { Component, HostListener, OnInit } from "@angular/core";
 export class AppComponent implements OnInit{
   screenWidth = window.innerWidth;
   screenHeight = window.innerHeight;
-  title = "Interactive Nursing Scenario";
+  title = "Caring for People Who use Drugs";
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -18,5 +18,5 @@ export class AppComponent implements OnInit{
     this.screenWidth = window.innerWidth;
     this.screenHeight = Math.round(this.screenWidth*.5625)
   }
-  
+
 }
