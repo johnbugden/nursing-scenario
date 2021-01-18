@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { ThrowStmt } from "@angular/compiler";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { VgApiService } from "@videogular/ngx-videogular/core";
 import { Observable, Subscription } from "rxjs";
@@ -11,11 +12,11 @@ import { SceneModel, ResponseModel } from "../scenes/scenes-model";
   selector: "app-main",
   templateUrl: "./main.component.html",
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   title = "nursing-sim";
   api: VgApiService;
   autoPlay: false;
-
+  lastVideoSource: string;
   sceneId: number;
 
   videoSource: any;
@@ -23,6 +24,10 @@ export class MainComponent implements OnInit {
 
   currentScene: SceneModel;
   currentResponse: ResponseModel;
+  unEndedCurrentResponse: ResponseModel;
+
+
+
   responseOngoing: boolean;
   hasResponded: boolean;
   videoPlayed: boolean;
@@ -30,8 +35,8 @@ export class MainComponent implements OnInit {
 
   overlayIsHidden: boolean;
   currentResponseChange: Observable<any>;
-  vidEndSubscription: any;
-  vidReadySubscription: any;
+  vidEndSubscription: Subscription;
+  vidReadySubscription: Subscription;
   responsesSubscription: Subscription;
   sceneSubscription: Subscription;
 
@@ -89,26 +94,60 @@ export class MainComponent implements OnInit {
   subscribeToResponses(): Subscription {
     return this.getResponseService.invokeResponseSelection.subscribe(
       (response) => {
+        console.log("New response: ", response);
         this.responsesSubscription.unsubscribe();
         this.responseOngoing = true;
+        this.videoSource = "";
         this.videoSource = "assets/videos/".concat(response.src); //disable for electron build
-        console.log(this.videoSource);
-        this.api.getMediaById("singleVideo").currentTime = 0;
-        this.vidReadySubscription = this.api
-          .getMediaById("singleVideo")
-          .subscriptions.canPlay.subscribe(() => {
-            this.vidEndSubscription = this.api
-              .getMediaById("singleVideo")
-              .subscriptions.ended.subscribe(() => {
-                this.responseOngoing = false;
-                this.hasResponded = true;
-                this.currentResponse = response;
-                this.vidEndSubscription.unsubscribe();
-                this.vidReadySubscription.unsubscribe();
-              });
-            this.api.getMediaById("singleVideo").play();
-          });
+        console.log("New video source: ", this.videoSource);
+        console.log("Last VideoSRC: ", this.lastVideoSource);
+        console.log("New video source canPlay: ", this.api.getMediaById("singleVideo").canPlay);
+        console.log("Last VideoSRC: ", this.lastVideoSource);
+        this.unEndedCurrentResponse = response;
+        if (this.videoSource === this.lastVideoSource) {
+          this.videoSource = "assets/videos/OL.mp4";
+          this.vidReadySubscription = this.api.getMediaById("singleVideo").subscriptions.canPlay.subscribe(() => {
+            this.videoSource = this.lastVideoSource;
+            this.vidReadySubscription.unsubscribe();
+            this.videoReadySubscription();
+          })
+        } else {
+          this.videoReadySubscription();
+        }
       }
     );
+  }
+
+  videoReadySubscription() {
+    this.vidReadySubscription = this.api
+      .getMediaById("singleVideo")
+      .subscriptions.canPlay.subscribe(() => {
+        this.api.getMediaById("singleVideo").currentTime = 0;
+        console.log("(canPay Subscription) New video source canPlay: ", this.api.getMediaById("singleVideo").canPlayThrough);
+        this.vidEndSubscription = this.api
+          .getMediaById("singleVideo")
+          .subscriptions.ended.subscribe(() => {
+            this.responseOngoing = false;
+            this.hasResponded = true;
+            this.currentResponse = this.unEndedCurrentResponse;
+            this.vidEndSubscription.unsubscribe();
+            this.vidReadySubscription.unsubscribe();
+            this.lastVideoSource = this.videoSource
+          });
+        this.api.getMediaById("singleVideo").play();
+      });
+  }
+
+  ngOnDestroy() {
+    const subs = [this.vidEndSubscription, this.vidReadySubscription, this.sceneSubscription, this.responsesSubscription];
+    subs.forEach(sub => {
+      this.unsubscribeEach(sub)
+    })
+  }
+
+  unsubscribeEach(subscription: Subscription) {
+    if (subscription) {
+      subscription.unsubscribe();
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { ResponseModel, SceneModel } from "./scenes-model";
+import { SceneModel } from "./scenes-model";
 
 export const scene3: SceneModel = {
   responses: [

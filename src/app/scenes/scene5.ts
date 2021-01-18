@@ -1,4 +1,4 @@
-import { ResponseModel, SceneModel } from "./scenes-model";
+import { SceneModel } from "./scenes-model";
 
 export const scene5: SceneModel = {
   responses: [
@@ -28,6 +28,6 @@ export const scene5: SceneModel = {
     },
   ],
   situation:
-    "The patient is getting ready to be transferred to the inpatient medical unit to receive intravenous antibiotic therapy. The nurse has a few more minutes to talk with the patient before they leave. The nurse wants to ensure that the patient is reducing their harm and using drugs as safely as they can.",
+    "The patient is getting ready to be transferred to the inpatient medical unit to receive intravenous antibiotic therapy. The nurse has a few more minutes to talk with the patient before they leave. Since the patient has stated they are not ready to stop using drugs, the nurse wants to ensure that the patient is reducing their harm and using drugs as safely as they can.",
   sceneId: 4
 };

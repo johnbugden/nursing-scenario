@@ -28,6 +28,6 @@ export const scene2: SceneModel = {
     },
   ],
   situation:
-    "The nurse checks in on the patient to see how they are doing. The patient appears to be more comfortable. The patient has visible injection marks on their arm in varying forms of healing as well as other reddened or bruised injection site marks.",
+    "The nurse provides comfort treatment and checks in on the patient to see how they are doing. The patient appears to be more comfortable. The patient has visible injection marks on their arm in varying forms of healing as well as other reddened or bruised injection site marks.",
   sceneId: 1,
 };

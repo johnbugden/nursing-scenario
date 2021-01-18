@@ -17,6 +17,7 @@ import { MainComponent } from './main/main.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { EndComponent } from './end/end.component';
 import { CreditsComponent } from './credits/credits.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreditsComponent } from './credits/credits.component';
     IntroductionComponent,
     EndComponent,
     CreditsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

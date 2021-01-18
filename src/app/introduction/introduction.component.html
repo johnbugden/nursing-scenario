@@ -1,22 +1,18 @@
 <vg-player (onPlayerReady)="onPlayerReady($event)">
   <video [src]="videoSource" type="video/mp4" [vgMedia]="introMedia" #introMedia id="introVideo" preload="auto"></video>
   <div [hidden]="overlayHidden" class="player-overlay">
-    <div class="jumbotron overlay p-xl-5" style="    display: flex;
-      flex-direction: column;
-      justify-content: center;">
-      <h1 class="display-4 text-center">Interactive Nursing Scenario</h1>
-      <hr class="my-4" />
+    <div class="jumbotron overlay p-xl-5">
+      <h1 class="display-6 mt-auto text-center">Scenario</h1>
+      <hr class="my-auto" />
       <p>
-        The nurse is caring for a 29 year old person admitted for an abscess on their forearm. The patient has been
+        The nurse is caring for a 22 year old person admitted for an abscess on their forearm. The patient has been
         injecting drugs for the past 2 years and admits to using marijuana, alcohol, heroin, and cocaine. Their forearm
         is red and swollen and they just arrived to the emergency department 45 minutes ago. The CNA reports to you that
-        the patient wants to see the nurse. You are entering the room to see the patient.
+        the patient wants to see the nurse. You are about to enter the room to see the patient.
       </p>
-      <hr class="my-4" />
-      <p class="lead text-center">Click the button below to begin the scenario</p>
-      <hr class="my-4" />
-      <div class="mx-auto row scene-wrapper">
-        <button type="button" class="btn btn-primary btn-lg" (click)="playVideo()">Begin Scenario</button>
+      <hr class="my-auto"/>
+      <div class="mx-auto mb-auto row scene-wrapper">
+        <button type="button" class="btn btn-primary btn-lg" (click)="playVideo()">Enter the Room</button>
       </div>
     </div>
   </div>

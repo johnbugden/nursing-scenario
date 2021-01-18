@@ -75,3 +75,12 @@ app-main, app-introduction, app-end, app-credits {
   -ms-user-select: none;
   user-select: none;
 }
+
+.overlay-text {
+  display: flex;
+  flex-direction: row;
+
+  span {
+    margin: auto;
+  }
+}

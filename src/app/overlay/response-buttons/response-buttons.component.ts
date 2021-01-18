@@ -9,14 +9,9 @@ import { ChangeResponseService } from './select-response.service';
 })
 export class ResponseButtonsComponent {
   @Input() currentScene: SceneModel;
-
   constructor(public changeResponseService: ChangeResponseService) { }
 
   changeVideo(src: string): void {
-    console.log(src);
     this.changeResponseService.onResponseButtonClick(src);
   }
-
-
-
 }

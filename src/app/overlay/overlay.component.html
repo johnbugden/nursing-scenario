@@ -1,6 +1,6 @@
 <div class="jumbotron overlay p-xl-5">
-    <h1 class="display-4 text-center">{{overlayTitle}}</h1>
-    <p class="lead">{{overlayText}}</p>
+    <h1 class="display-6 text-center overlay-title">{{overlayTitle}}</h1>
+    <p class="overlay-text"><span>{{overlayText}}</span></p>
   <hr class="my-4">
   <div class="mx-auto row scene-wrapper" *ngIf="hasResponded; else notRetry">
     <app-scene-buttons [currentSceneId]="currentScene.sceneId" [canContinue]="correct"></app-scene-buttons>

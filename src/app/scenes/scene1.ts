@@ -27,6 +27,6 @@ export const scene1: SceneModel = {
     },
   ],
   situation:
-    "The nurse is caring for a 29 year old person admitted for an abscess on their forearm. The patient has been injecting drugs for the past 2 years and admits to using marijuana, alcohol, heroin, and cocaine. Their forearm is red and swollen and they just arrived to the emergency department 45 minutes ago. The CNA reports to you that the patient wants to see the nurse. You are entering the room to see the patient.",
+    "The nurse is caring for a 22 year old person admitted for an abscess on their forearm. The patient has been injecting drugs for the past 2 years and admits to using marijuana, alcohol, heroin, and cocaine. Their forearm is red and swollen and they just arrived to the emergency department 45 minutes ago. The CNA reports to you that the patient wants to see the nurse. You are entering the room to see the patient.",
   sceneId: 0
 };
