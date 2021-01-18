@@ -48,7 +48,6 @@ export class MainComponent implements OnInit {
   }
 
   initializeComponent(): void {
-    this.videoSource = "assets/videos/".concat(this.scenes[0].responses[0].src); // disable for electron build
     this.scenes = scenes;
     this.needsToRetry = false;
     this.sceneId = 0;
@@ -107,7 +106,6 @@ export class MainComponent implements OnInit {
                 this.vidEndSubscription.unsubscribe();
                 this.vidReadySubscription.unsubscribe();
               });
-
             this.api.getMediaById("singleVideo").play();
           });
       }
