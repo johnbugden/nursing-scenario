@@ -1,6 +1,10 @@
+// Import SceneModel class from a separate file
 import { SceneModel } from "./scenes-model";
 
+// Define an object representing the data for the first scene of the interactive simulation
 export const scene1: SceneModel = {
+
+  // An array of possible responses to the patient in the scene, each of which is an object
   responses: [
     {
       response:
@@ -26,7 +30,11 @@ export const scene1: SceneModel = {
       src: "scene1/r3.m4v",
     },
   ],
+
+  // A string describing the patient's condition and the nurse's role in the scene
   situation:
     "The nurse is caring for a 22 year old person admitted for an abscess on their forearm. The patient has been injecting drugs for the past 2 years and admits to using marijuana, alcohol, heroin, and cocaine. Their forearm is red and swollen and they just arrived to the emergency department 45 minutes ago. The CNA reports to you that the patient wants to see the nurse. You are entering the room to see the patient.",
+
+  // An integer that uniquely identifies the scene
   sceneId: 0
 };
